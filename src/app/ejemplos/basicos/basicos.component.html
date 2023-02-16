@@ -1,0 +1,77 @@
+<h4>Interpolacion</h4>
+<ul>
+    <li>Nombre: {{ nombre }}</li>
+    <li>Correo: {{ correo }}</li>
+    <li>Edad: {{ edad }} años</li>
+    <li>Fecha: {{ fecha }} años</li>
+    <li>HTML: <span [innerHTML]="html"></span></li>
+    <li>Paises: {{ paises }}</li>
+</ul>
+<hr>
+<h4>Condicionales</h4>
+<p *ngIf="edad>=18; else edadElse">Es mayor de Edad</p>
+<ng-template #edadElse>
+    <p>No es mayor de edad, es muy joven</p>
+</ng-template>
+<hr>
+<h4>Operador ternario</h4>
+<p>{{ (edad>=18) ? 'ternario si es mayor':'ternario no es mayor' }}</p>
+<hr>
+<h4>Switch case</h4>
+<div [ngSwitch]="numero">
+    <p *ngSwitchCase="12">Es 12</p>
+    <p *ngSwitchCase="13">Es 13</p>
+    <p *ngSwitchCase="14">Es 14</p>
+    <p *ngSwitchDefault> no es ninguno</p>
+
+</div>
+<hr>
+<h4>ng-container</h4>
+<ng-container *ngIf="edad>=18">
+    Se cumple condicion
+</ng-container>
+<hr>
+<h4>ngFor</h4>
+<ul>
+    <li *ngFor="let item of [1,2,3,4,5,6,7,8,9]; let i=index">
+        {{i}} - {{item}}
+    </li>
+</ul>
+<hr>
+<h4>Recorrer un arreglo</h4>
+<ul>
+    <li *ngFor="let pais of paises; let i = index; first as primero; last as ultimo">
+        {{i+1}} - {{pais.nombre}} ({{pais.dominio}}) 
+        <span *ngIf="primero">este es el primer indice</span> 
+        <span *ngIf="ultimo">este es el ultimo</span>
+    </li>
+</ul>
+<hr>
+<h4>ng-template</h4>
+<ul>
+    <ng-template ngFor let-pais [ngForOf]="paises" let-i="index">
+        <li>
+            {{i+1}} - {{pais.nombre}} ({{pais.dominio}})
+        </li>        
+    </ng-template>
+</ul>
+<hr>
+<h4>odd y event</h4>
+<div *ngFor="let pais of paises; let i=index; let impar = odd; let par = even;"
+    [ngClass]="{azul:par, verde:impar}">
+    <p>
+        {{i}} - {{pais.nombre}} ({{pais.dominio}})
+        <span *ngIf="impar">es impar</span>
+        <span *ngIf="par">es par</span>
+    </p>
+
+</div>
+<hr>
+<h4>Pipes o Tuberias</h4>
+<p>{{texto | lowercase}} ...</p>
+<p>{{texto | slice:0:100 | uppercase}} ...</p>
+<p>{{texto | slice:0:100}} ...</p>
+<p>{{cantidad | currency:'CLP':'$'}}</p>
+<p>{{fecha | date:'dd-MM-yyyy'}}</p>
+<p>{{fecha | formateaFecha}}</p>
+<p>{{cantidad | formateaNumeros}}</p>

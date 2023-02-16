@@ -1,0 +1,16 @@
+<h1>Página Angular</h1>
+<ul>
+    <li>
+        <a routerLink="/">Home</a>
+    </li>
+    <li>
+        <a routerLink="/ruta-2/45/que-hueno-que-es-angular" routerLinkActive="enlaces">Ruta 2</a>
+    </li>
+    <li>
+        <a routerLink="/formularios" routerLinkActive="enlaces">Formularios</a>
+    </li>
+    <li>
+        <a routerLink="/material" routerLinkActive="enlaces">Material</a>
+    </li>
+</ul>
+<router-outlet></router-outlet>

@@ -1,0 +1,6 @@
+<h3>Comunicacion entre componentes</h3>
+<!-- <app-comunicacion2 titulo="Titulo desde com" subtitulo="Subtitulo"></app-comunicacion2> -->
+<app-comunicacion2 [titulo]="textoTitulo" [subtitulo]="textoSubtitulo" (valordelhijo)="actualizarHijo($event)"></app-comunicacion2>
+<p>
+    {{hijo}}
+</p>
