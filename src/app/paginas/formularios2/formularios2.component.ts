@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { pairs } from 'rxjs';
-
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ValidaSelectDirectiveValidator } from '../../validaciones/valida-select.directive';
+import swal from 'sweetalert2';
 @Component({
   selector: 'app-formularios2',
   templateUrl: './formularios2.component.html',
@@ -24,21 +24,38 @@ export class Formularios2Component implements OnInit {
     this.formulario = new FormGroup(
       {
         nombre: new FormControl(
-          this.usuario.nombre
+          this.usuario.nombre,
+          [
+            Validators.required,
+            Validators.minLength(4)
+          ]
         ),
         correo: new FormControl(
-          this.usuario.correo
+          this.usuario.correo,
+          [
+            Validators.required,
+            Validators.minLength(4),
+            Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")
+          ]
         ),
         telefono: new FormControl(
-          this.usuario.telefono
+          this.usuario.telefono,
+          [
+            Validators.required,
+            Validators.minLength(4)
+          ]
         ),
         direccion: new FormControl(
-          this.usuario.direccion
+          this.usuario.direccion,
+          [
+            Validators.required,
+            Validators.minLength(4)
+          ]
         ),
         pais: new FormControl(
-          this.usuario.pais
+          
         )
-      });
+      }, {validators: ValidaSelectDirectiveValidator});
     
       this.paises = [
         {
@@ -65,7 +82,19 @@ export class Formularios2Component implements OnInit {
 
   Enviar()
   {
-    alert(this.formulario.value.nombre);
+    let datos = 'nombre:' + this.formulario.value.nombre + ' email:' + this.formulario.value.correo + ' telefono:' + 
+      this.formulario.value.telefono + ' direccion:' + this.formulario.value.direccion + ' pais:' + 
+          this.formulario.value.pais;
+    
+    //ver todas las configuraciones de swal.fire
+    swal.fire(
+      {
+        icon:'error',
+        timer:5000,
+        title: 'Ups..',
+        text: datos
+      }
+    )
   }
 
 }
