@@ -1,29 +1,56 @@
 <h3>Formulario Reactico</h3>
 <form [formGroup]="formulario" #formDir="ngForm">
-    <div class="form-group">
-        <label for="nombre">Nombre: </label>
-        <input type="text" class="form-control" formControlName="nombre" required>        
+    <div [hidden]="formDir.submitted">
+        <div class="cross-validatios" [class.cross-validation-error]="formulario.errors?.['ValidaSelect'] 
+            && formulario.invalid && (formulario.touched || formulario.dirty)">
+        <div class="form-group">
+            <label for="nombre">Nombre: </label>
+            <input type="text" class="form-control" formControlName="nombre" required>
+            <div *ngIf="nombre.invalid && (nombre.touched || nombre.dirty)" class="alert alert-danger">
+                <div *ngIf="nombre.errors?.['required']">El campo nombre es obligatorio.</div>
+                <div *ngIf="nombre.errors?.['minlength']">El campo nombre debe tener al menos 4 caracteres.</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="correo">E-mail: </label>
+            <input type="text" class="form-control" formControlName="correo" required>
+            <div *ngIf="correo.invalid && (correo.touched || correo.dirty)" class="alert alert-danger">
+                <div *ngIf="correo.errors?.['required']">El E-mail es obligatorio.</div>
+                <div *ngIf="correo.errors?.['minlength']">El Email debe tener al menos 4 caracteres.</div>
+                <div *ngIf="correo.errors?.['pattern']">El Email debe tener un formato válido.</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="telefono">Telefono: </label>
+            <input type="text" class="form-control" formControlName="telefono" required>        
+            <div *ngIf="telefono.invalid && (telefono.touched || telefono.dirty)" class="alert alert-danger">
+                <div *ngIf="telefono.errors?.['required']">El campo telefono es obligatorio.</div>
+                <div *ngIf="telefono.errors?.['minlength']">El campo telefono debe tener al menos 4 caracteres.</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="direccion">Direccion: </label>
+            <input type="text" class="form-control" formControlName="direccion" required>        
+            <div *ngIf="direccion.invalid && (direccion.touched || direccion.dirty)" class="alert alert-danger">
+                <div *ngIf="direccion.errors?.['required']">El campo direccion es obligatorio.</div>
+                <div *ngIf="direccion.errors?.['minlength']">El campo direccion debe tener al menos 4 caracteres.</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="pais">Pais: </label>
+            <select class="form-control" formControlName="pais">
+                <option *ngFor="let pais of paises" value="{{pais.dominio}}">
+                    {{pais.nombre}}
+                </option>
+            </select>
+            <div *ngIf="formulario.errors?.['ValidateSelectNull'] && (formulario.touched || formulario.dirty)" class="alert alert-danger">
+                Seleccione un pais
+            </div>
+        </div>
     </div>
-    <div class="form-group">
-        <label for="correo">E-mail: </label>
-        <input type="text" class="form-control" formControlName="correo" required>        
-    </div>
-    <div class="form-group">
-        <label for="telefono">Telefono: </label>
-        <input type="text" class="form-control" formControlName="telefono" required>        
-    </div>
-    <div class="form-group">
-        <label for="direccion">Direccion: </label>
-        <input type="text" class="form-control" formControlName="direccion" required>        
-    </div>
-    <div class="form-group">
-        <label for="pais">Pais: </label>
-        <select class="form-control" formControlName="pais">
-            <option *ngFor="let pais of paises" value="{{pais.dominio}}">
-                {{pais.nombre}}
-            </option>
-        </select>
     </div>
     <hr>
     <button type="submit" class="btn btn-primary" (click)="Enviar()" [disabled]="formulario.invalid">Enviar</button>
+    <button type="button" class="btn btn-primary" (click)="formDir.resetForm({})">cargar formulario otra vez</button>
+
 </form>

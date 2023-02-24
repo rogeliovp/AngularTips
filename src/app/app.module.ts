@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { importProvidersFrom, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -22,6 +22,26 @@ import { CabeceroComponent } from './componentes/cabecero/cabecero.component';
 import { FooterComponent } from './componentes/footer/footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Formularios2Component } from './paginas/formularios2/formularios2.component';
+import { ValidaSelectDirective } from './validaciones/valida-select.directive';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialBotonesComponent } from './paginas/material-botones/material-botones.component';
+
+//Material
+import { MatButtonModule} from '@angular/material/button'
+import { MatIconModule} from '@angular/material/icon';
+import { MaterialInputComponent } from './paginas/material-input/material-input.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MaterialTabsComponent } from './paginas/material-tabs/material-tabs.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MaterialDialogComponent } from './paginas/material-dialog/material-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MaterialExpansionComponent } from './paginas/material-expansion/material-expansion.component';
+import { MatExpansionModule} from '@angular/material/expansion';
+import { MaterialCardComponent } from './paginas/material-card/material-card.component';
+import { MatCardModule } from '@angular/material/card';
+import { MODALComponent } from './paginas/m-odal/m-odal.component';
+import { ModalComponent } from './paginas/modal/modal.component'
 
 @NgModule({
   declarations: [
@@ -42,14 +62,32 @@ import { Formularios2Component } from './paginas/formularios2/formularios2.compo
     PagenotfoundComponent,
     CabeceroComponent,
     FooterComponent,
-    Formularios2Component
+    Formularios2Component,
+    ValidaSelectDirective,
+    MaterialBotonesComponent,
+    MaterialInputComponent,
+    MaterialTabsComponent,
+    MaterialDialogComponent,
+    MaterialExpansionComponent,
+    MaterialCardComponent,
+    MODALComponent,
+    ModalComponent    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatInputModule,
+    MatSlideToggleModule,
+    MatTabsModule,
+    MatDialogModule,
+    MatExpansionModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
